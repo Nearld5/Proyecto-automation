@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src\\test\\resources", //Directorio de nuestros archivos .feature
-glue = "src\\test\\java\\steps", //Paquete donde tenemos nuestras clases definiendo los steps escritos en el feature file
+glue = "steps", //Paquete donde tenemos nuestras clases definiendo los steps escritos en el feature file
 plugin = { "pretty", "html:target/cucumber-reports" })
 public class TestRunner {
 
