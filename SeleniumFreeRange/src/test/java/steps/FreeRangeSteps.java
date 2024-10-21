@@ -17,7 +17,13 @@ public class FreeRangeSteps {
     public void navigationBarUse(String section) {
         landingPage.clickOnSectionNavigationBar(section);
     }
-    @And("select Introducción al Testing")
+
+    @When("I select elegir plan")
+    public void selectElegirPlan() {
+        landingPage.ClickOnElegirPlanButton();
+    }
+
+    @And("Select Introducción al Testing")
     public void navigatetoIntro(){
         cursosPage.clickFundamentosTestingLink();
     }

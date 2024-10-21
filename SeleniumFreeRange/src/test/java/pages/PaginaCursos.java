@@ -9,6 +9,7 @@ public class PaginaCursos extends BasePage{
     }
 
     public void clickFundamentosTestingLink(){
+        this.maximizeWindow();
         clickElement(fundamentosTestingLink);
     }
 }

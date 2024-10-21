@@ -14,7 +14,11 @@ Feature: Navigation bar
     #         | Mentorías |
     #         | Blog      |
      
-        Scenario: Courses are presented correctly to potential customers
+        # Scenario: Courses are presented correctly to potential customers
+        # Given I navigate to www.freerangetesters.com
+        # When I go to Cursos using the navigation bar
+        # And Select Introducción al Testing
+        
+        Scenario: Users can select a plan when signing up
         Given I navigate to www.freerangetesters.com
-        When I go to Cursos using the navigation bar
-        And select Introducción al Testing
+        When I select elegir plan
