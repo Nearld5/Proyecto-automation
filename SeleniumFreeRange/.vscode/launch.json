@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Test",
+      "request": "launch",
+      "mainClass": "${workspaceFolder}/src/test/java/YourMainTestClass", // Cambia YourMainTestClass por tu clase principal de pruebas
+      "console": "integratedTerminal", // Asegura que la salida se muestre en la terminal integrada
+      "args": "clean test"  // para Gradle
+    }
+  ]
+}

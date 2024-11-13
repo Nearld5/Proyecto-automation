@@ -2,6 +2,7 @@ package pages;
 
 // Importaciones necesarias
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -98,5 +99,57 @@ public class BasePage {
 
         return dropdownOptions.size();
     }
+
+    // Método que retorna XPaths de todos los elementos 'input' encontrados en un
+    // contenedor 'div'. Retornará los textos encontrados en los inputs
+    public List<String> getInputXPaths(String containerSelector) {
+        //Encontrará todos los inputs del contenedor = containerSelector
+        WebElement container = driver.findElement(By.xpath(containerSelector));
+        List<WebElement> inputs = container.findElements(By.tagName("input"));
+        //Elimino el último elemento de la lista ya que no es necesario
+        inputs.remove(inputs.size() - 1);
+
+        System.out.println("Número de elementos input encontrados: " + inputs.size());
+        List<String> inputXPaths = new ArrayList<>();
+        //Recorrido por cada elemento encontrado yu almacenado en inputs
+        for (WebElement input : inputs) {
+            String inputXPath = null;
+            //Recogerá los id de los inputs
+            String inputId = input.getAttribute("id");
+            //Recogerá value de los inputs
+            String inputValue = input.getAttribute("value");
+            
+            if (inputId != null && !inputId.isEmpty()) {
+                inputXPath = "//*[@id='" + inputId + "']";
+            } else if (inputValue != null && !inputValue.isEmpty()) {
+                // Si el 'id' no está presente, intentamos con el 'value'
+                inputXPath = containerSelector + "//*[@value='" + inputValue + "']";
+            }
+            
+            System.out.println("XPath generado para agregar a la lista de inputs: " + inputXPath);
+
+            //Recogerá los textos de los xpaths generados y encontrados en el DOM
+            String TextElement = input.findElement(By.xpath(inputXPath+"//following-sibling::label")).getText();
+            System.out.println("Los textos asociados al input son: "+ TextElement);
+            
+            //Agregará los textos recogidos a la lista inputXPaths
+            inputXPaths.add(TextElement);
+        }
+
+        return inputXPaths;
+    }
+
+    
+// Este metodo devuelve el texto de todos los valores (texto) de un Dropdown
+public List<String> getDropDownValues(String locator) {
+    Select dropdown = new Select(Find(locator));
+    List<WebElement> dropdownOptions = dropdown.getOptions();
+    List<String> values = new ArrayList<>();
+    for (WebElement options : dropdownOptions) {
+        values.add(options.getText());
+    }
+    return values;
+}
+
 
 }
